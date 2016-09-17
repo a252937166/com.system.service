@@ -17,6 +17,8 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/util
     http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <!--连接数据库-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="order" value="1"/>
         <property name="locations">
@@ -51,5 +53,32 @@
         </property>
     </bean>
 
+    <!--映射mapper-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="frameworkSessionFactory"/>
+        <property name="basePackage" value="com.crm.mapper"/>
+    </bean>
+
+    <!--事务管理配置-->
+    <bean id="frameworkTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="frameworkDataSource"></property>
+    </bean>
+
+    <tx:advice id="frameworkTxAdvice" transaction-manager="frameworkTransactionManager">
+        <tx:attributes>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="update*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="delete*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="add*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="frameworkServicePointCut" expression="execution(* com.crm.service..*.*(..))"/>
+        <aop:advisor pointcut-ref="frameworkServicePointCut" advice-ref="frameworkTxAdvice"/>
+    </aop:config>
 
 </beans>

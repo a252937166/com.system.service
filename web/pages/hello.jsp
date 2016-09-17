@@ -11,6 +11,6 @@
     <title>hello</title>
 </head>
 <body>
-Hello!! ${username}
+Hello!!${username}
 </body>
 </html>

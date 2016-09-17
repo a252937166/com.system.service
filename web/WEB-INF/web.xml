@@ -20,8 +20,10 @@
         <init-param>
             <description>SpringContext</description>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring/springmvc-servlet.xml</param-value>
-            <param-value>/WEB-INF/spring/application-context.xml</param-value>
+            <param-value>
+                /WEB-INF/spring/springmvc-servlet.xml,
+                /WEB-INF/spring/application-context.xml
+            </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
