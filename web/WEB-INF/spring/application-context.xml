@@ -49,6 +49,7 @@
         <property name="mapperLocations">
             <list>
                 <value>classpath*:com/crm/mapper/helloMapper.xml</value>
+                <value>classpath*:com/crm/mapper/menuMapper.xml</value>
             </list>
         </property>
     </bean>
