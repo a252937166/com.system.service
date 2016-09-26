@@ -40,12 +40,14 @@ var drawMenus = function(menuData) {
 
         initClick();
 };
+
 var initClick = function () {
     $("#menuList").find("li").find("a")
         .unbind("click")
         .bind("click",drawPage)
         .css("cursor","pointer");;
 };
+
 var drawPage = function () {
     var liArr = $(this).parents("ul").find("li").removeClass();
 /*    $.each(liArr,function (i,obj) {
