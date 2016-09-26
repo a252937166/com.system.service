@@ -35,13 +35,10 @@ var drawMenus = function(menuData) {
             menuStr += menuData[i]["menuName"];
             menuStr += "</span></a></li>"
         }
-
         $("#menuList").html(menuStr);
 
         initClick();
 };
-
-
 var initClick = function () {
     $("#menuList").find("li").find("a")
         .unbind("click")
