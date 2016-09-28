@@ -20,43 +20,58 @@ var readMenus = function () {
     });
 };
 
-var drawMenus = function(menuData) {
-        var menuStr = "";
-        for(var i=0; i<menuData.length; i++) {
-            if (i==0) {
-                menuStr += "<li class='active'>";
-            } else {
-                menuStr += "<li class=''>";
-            }
-            menuStr += "<a><i class='icon-dashboard'></i>";
-            menuStr += "<span class='menu-text' data-url=";
-            menuStr += menuData[i]["menuUrl"];
-            menuStr += ">";
-            menuStr += menuData[i]["menuName"];
-            menuStr += "</span></a></li>"
+var drawMenus = function (menuData) {
+    var menuStr = "";
+    for (var i = 0; i < menuData.length; i++) {
+        if (i == 0) {
+            menuStr += "<li class='active'>";
+        } else {
+            menuStr += "<li class=''>";
         }
-        $("#menuList").html(menuStr);
-
-        initClick();
+        menuStr += "<a><i class='icon-dashboard'></i>";
+        menuStr += "<span class='menu-text' data-url=";
+        menuStr += menuData[i]["menuUrl"];
+        menuStr += ">";
+        menuStr += menuData[i]["menuName"];
+        menuStr += "</span></a></li>"
+    }
+    $("#menuList").html(menuStr);
+    initClick();
 };
+
 var initClick = function () {
     $("#menuList").find("li").find("a")
         .unbind("click")
-        .bind("click",drawPage)
-        .css("cursor","pointer");;
+        .bind("click", drawPage)
+        .css("cursor", "pointer");
+    ;
 };
 
 
 var drawPage = function () {
     var liArr = $(this).parents("ul").find("li").removeClass();
-/*    $.each(liArr,function (i,obj) {
-       $(obj).removeClass();
-    });*/
-    $(this).parents("li").attr("class","active");
-    // drawTitleName($(this).find("span").text());
+    /*    $.each(liArr,function (i,obj) {
+     $(obj).removeClass();
+     });*/
+    $(this).parents("li").attr("class", "active");
+    drawTitleName($(this).find("span").text());//拼装导航信息
     var pagePath = path + $(this).find("span").attr("data-url");
     $("#page-content").load(pagePath);
 };
+
+var drawTitleName = function (menuName) {
+    var breadcrumb = "";
+    breadcrumb +=
+        " <ul class='breadcrumb'>" +
+        " <li> " +
+        "<i class='icon-home home-icon'></i>" +
+        "<a href='" + path + "/pages/index.jsp'>主页</a>" +
+        "</li>" +
+        "<li class='active' id = 'titleName'>" + menuName + "</li>" +
+        "</ul>" ;
+    $("#breadcrumbs").html(breadcrumb);
+}
+
 //1. 读取数据
 //2. 将数据按照格式拼写
 //3. 处理一些样式问题

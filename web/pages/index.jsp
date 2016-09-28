@@ -71,7 +71,7 @@
     <div class="main-containter-inner">
         <div class="sidebar" id="left"></div>
         <div class="main-content" id="main-content">
-            <div class="breadcrumbs" id="breadcrumbs"> </div>
+            <div class="breadcrumbs" id="breadcrumbs" style="padding-top: 10px"> </div>
             <div class="page-content" id="page-content">
                 <!-- 					欢迎来到客户关系管理系统！！！ -->
 
