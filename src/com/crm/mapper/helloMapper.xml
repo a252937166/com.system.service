@@ -3,6 +3,6 @@
 <mapper namespace="com.crm.mapper.HelloMapper">
 
     <select id="hello"  resultType="String">
-        SELECT name from sys_user WHERE ID='123'
+        SELECT user_name from sys_user WHERE user_code='123'
     </select>
 </mapper>

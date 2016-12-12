@@ -17,7 +17,6 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
-    @ResponseBody
     @RequestMapping(value = "hello",method = RequestMethod.GET)
     public String hello(String username, Model model) {
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.mapper.UserMapper">
+
+    <resultMap type="com.crm.util.vo.user.UserVO" id="UserMap">
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR"/>
+        <result column="USER_CODE" property="userCode" jdbcType="VARCHAR"/>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+        <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="USER_EMAIL" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
+    </resultMap>
+
+    <insert id="addUser" parameterType="com.crm.util.vo.user.UserVO">
+        INSERT INTO  SYS_USER
+        (USER_ID,USER_CODE,USER_NAME,USER_PASSWORD,USER_PHONE,USER_EMAIL,CREATE_DATE)
+        VALUES(
+        #{userId},#{userCode},#{userName},#{userPassword},
+        #{userPhone},#{userEmail},NOW()
+        )
+    </insert>
+
+    <select id="findUsers" parameterType="com.crm.util.vo.user.UserVO" resultMap="UserMap"  >
+        SELECT USER_ID,USER_CODE,USER_NAME,USER_PASSWORD,USER_PHONE,USER_EMAIL,CREATE_DATE
+        FROM SYS_USER
+    </select>
+</mapper>

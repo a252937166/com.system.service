@@ -19,9 +19,7 @@ public class MenuDaoImpl implements MenuDao {
 
     @Override
     public List<MenuVO> findMenus() {
-
         List<MenuVO> result = mapper.findMenus();
-
         return result;
     }
 }
